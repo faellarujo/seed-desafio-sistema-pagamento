@@ -1,6 +1,6 @@
 package com.pt.sistemapagamento.model;
 
-public enum TipoDePagamento {
+public enum TipoDePagamentoModel {
 
     DINHEIRO,
     CARTAO,

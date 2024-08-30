@@ -1,8 +1,11 @@
 package com.pt.sistemapagamento.request;
 
-import com.pt.sistemapagamento.model.TipoDePagamento;
+import com.pt.sistemapagamento.model.FormaDePagamentoModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 public class UsuarioRequest {
 
@@ -10,8 +13,6 @@ public class UsuarioRequest {
     @Email
     @NotEmpty
     String email;
-
-    TipoDePagamento tipoDePagamento;
 
     public String getEmail() {
         return email;

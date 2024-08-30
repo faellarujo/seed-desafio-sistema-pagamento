@@ -1,0 +1,8 @@
+{
+  "email": 'raphaelaraujo.ti@gmail.com',
+  "formaDePagamento" : [
+    {
+      "tipo" : 'CHEQUE',
+    }
+  ]
+}

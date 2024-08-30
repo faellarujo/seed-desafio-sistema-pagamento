@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class CustomValidationExceptionHandler { 
+public class CustomValidationExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -80,22 +80,17 @@ public class CustomValidationExceptionHandler {
 //    public ResponseEntity<String> tipoDePagamentoInexistente(TipoDePagamentoInexistente ex) {
 //        return ResponseEntity.status(400).body(ex.getMessage());
 //    }
-////
-////    @ExceptionHandler(CupomDataException.class)//1
-////    public ResponseEntity<String> IllegalStateException(CupomDataException ex) {
-////        return ResponseEntity.status(400).body(ex.getMessage());
-////    }
-////
-////    @ExceptionHandler(CupomInativoException.class)//1
-////    public ResponseEntity<String> IllegalStateException(CupomInativoException ex) {
-////        return ResponseEntity.status(400).body(ex.getMessage());
-////    }
-////
-
-
-
-
-
+//
+//    @ExceptionHandler(CupomDataException.class)//1
+//    public ResponseEntity<String> IllegalStateException(CupomDataException ex) {
+//        return ResponseEntity.status(400).body(ex.getMessage());
+//    }
+//
+//    @ExceptionHandler(CupomInativoException.class)//1
+//    public ResponseEntity<String> IllegalStateException(CupomInativoException ex) {
+//        return ResponseEntity.status(400).body(ex.getMessage());
+//    }
+//
 
 
 }
