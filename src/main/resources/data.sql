@@ -15,10 +15,13 @@ INSERT INTO restaurante (nome) VALUES ('Restaurante E');
 
 -- Forma de Pagamento for User 1
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 1, 'DINHEIRO', false, 'Pagamento em dinheiro');
+INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 1, 'CARTAO', true, 'Pagamento com cartão');
+INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 1, 'CHEQUE', false, 'Pagamento com cheque');
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 2, 'CARTAO', true, 'Pagamento com cartão');
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 3, 'PIX', true, 'Pagamento via PIX');
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 4, 'MAQUINA', true, 'Pagamento via máquina');
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (1, 5, 'CHEQUE', false, 'Pagamento com cheque');
+
 
 -- Forma de Pagamento for User 2
 INSERT INTO forma_de_pagamento (usuario_id, restaurante_id, tipo, pagamento_Online, descricao) VALUES (2, 1, 'CARTAO', true, 'Pagamento com cartão');

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 @Table(name = "forma_de_pagamento")
 public class FormaDePagamentoModel {
@@ -31,6 +33,12 @@ public class FormaDePagamentoModel {
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
+
+
+    @Deprecated
+    public FormaDePagamentoModel() {
+
+    }
 
 
     public FormaDePagamentoModel(TipoDePagamentoModel tipo, boolean pagamentoOnline, String descricao) {
@@ -68,5 +76,13 @@ public class FormaDePagamentoModel {
                 ", pagamentoOnline=" + pagamentoOnline +
                 ", descricao='" + descricao + '\'' +
                 '}';
+    }
+
+    public List<FormaDePagamentoModel> getListaDePagamentoDisponivel(Long id_usuario, Long  id_restaurante, EntityManager entityManager) {
+        Query query = entityManager.createQuery("SELECT f FROM FormaDePagamentoModel f WHERE f.usuarioModel.id = :id_usuario AND f.restauranteModel.id = :id_restaurante");
+        query.setParameter("id_usuario", id_usuario);
+        query.setParameter("id_restaurante", id_restaurante);
+        List<FormaDePagamentoModel> formaDePagamentoModel = query.getResultList();
+        return formaDePagamentoModel;
     }
 }
