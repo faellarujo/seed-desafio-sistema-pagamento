@@ -14,7 +14,6 @@ public class FormaDePagamentoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private UsuarioModel usuarioModel;
@@ -46,6 +45,10 @@ public class FormaDePagamentoModel {
         this.pagamentoOnline = pagamentoOnline;
         this.descricao = descricao;
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public TipoDePagamentoModel getTipo() {
