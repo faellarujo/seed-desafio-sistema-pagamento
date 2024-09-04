@@ -1,5 +1,6 @@
 package com.pt.sistemapagamento.model;
 
+import com.pt.sistemapagamento.fraude.AntiFraude;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "forma_de_pagamento")
-public class FormaDePagamentoModel {
+public class FormaDePagamentoModel implements AntiFraude {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,11 +82,22 @@ public class FormaDePagamentoModel {
                 '}';
     }
 
-    public List<FormaDePagamentoModel> getListaDePagamentoDisponivel(Long id_usuario, Long  id_restaurante, EntityManager entityManager) {
+    public List<FormaDePagamentoModel> getListaDePagamentoDisponivel(Long id_usuario, Long id_restaurante, EntityManager entityManager) {
         Query query = entityManager.createQuery("SELECT f FROM FormaDePagamentoModel f WHERE f.usuarioModel.id = :id_usuario AND f.restauranteModel.id = :id_restaurante");
         query.setParameter("id_usuario", id_usuario);
         query.setParameter("id_restaurante", id_restaurante);
         List<FormaDePagamentoModel> formaDePagamentoModel = query.getResultList();
         return formaDePagamentoModel;
+    }
+
+    @Override
+    public boolean antiFraude(UsuarioModel usuarioModel, List<PossiveisFraudadores> antiFraude) {
+        // verificar se email do usuario esta na lista de possiveis fraudadores
+        antiFraude.stream().forEach(possiveisFraudadores -> {
+            if (possiveisFraudadores.getEmail().equals(usuarioModel.getEmail())) {
+                throw new IllegalArgumentException("Usuario com possivel fraude");
+            }
+        });
+        return true;
     }
 }
