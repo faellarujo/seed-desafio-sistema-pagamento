@@ -2,15 +2,18 @@ package com.pt.sistemapagamento.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.pt.sistemapagamento.model.FormaDePagamentoModel;
+import com.pt.sistemapagamento.response.ListaDePagamentoResponse;
 import jakarta.validation.constraints.NotNull;
 
 public class ListaDePagamentosDoUsuarioRequest {
 
 
+    @NotNull
     @JsonProperty("Id_Usuario")
     private Long Id_Usuario;
 
-
+    @NotNull
     @JsonProperty("Id_Restaurante")
     private Long Id_Restaurante;
 
@@ -44,5 +47,9 @@ public class ListaDePagamentosDoUsuarioRequest {
                 "Id_Usuario=" + Id_Usuario +
                 ", Id_Restaurante=" + Id_Restaurante +
                 '}';
+    }
+
+    public ListaDePagamentoResponse  toModel(String descricao, Long id_forma_de_pagamento) {
+        return new ListaDePagamentoResponse(descricao, id_forma_de_pagamento);
     }
 }

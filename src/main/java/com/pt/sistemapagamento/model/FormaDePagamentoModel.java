@@ -1,19 +1,19 @@
 package com.pt.sistemapagamento.model;
 
+import com.pt.sistemapagamento.fraude.AntiFraude;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import org.apache.catalina.Manager;
 
 import java.util.List;
 
 @Entity
 @Table(name = "forma_de_pagamento")
-public class FormaDePagamentoModel {
+public class FormaDePagamentoModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -48,6 +48,10 @@ public class FormaDePagamentoModel {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public TipoDePagamentoModel getTipo() {
         return tipo;
     }
@@ -78,11 +82,5 @@ public class FormaDePagamentoModel {
                 '}';
     }
 
-    public List<FormaDePagamentoModel> getListaDePagamentoDisponivel(Long id_usuario, Long  id_restaurante, EntityManager entityManager) {
-        Query query = entityManager.createQuery("SELECT f FROM FormaDePagamentoModel f WHERE f.usuarioModel.id = :id_usuario AND f.restauranteModel.id = :id_restaurante");
-        query.setParameter("id_usuario", id_usuario);
-        query.setParameter("id_restaurante", id_restaurante);
-        List<FormaDePagamentoModel> formaDePagamentoModel = query.getResultList();
-        return formaDePagamentoModel;
-    }
+
 }

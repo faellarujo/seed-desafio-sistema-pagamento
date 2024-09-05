@@ -4,6 +4,25 @@ INSERT INTO usuario (email) VALUES ('sylvain617@uorak.com');
 INSERT INTO usuario (email) VALUES ('benamar1828@uorak.com');
 INSERT INTO usuario (email) VALUES ('wael9859@uorak.com');
 INSERT INTO usuario (email) VALUES ('tiaodasilva.com');
+INSERT INTO usuario (email) VALUES ('joaodasilva.com');
+INSERT INTO usuario (email) VALUES ('maria.com');
+INSERT INTO usuario (email) VALUES ('jose.com');
+INSERT INTO usuario (email) VALUES ('carlos.com');
+INSERT INTO usuario (email) VALUES ('ana.com');
+INSERT INTO usuario (email) VALUES ('pedro.com');
+INSERT INTO usuario (email) VALUES ('lucas.com');
+INSERT INTO usuario (email) VALUES ('marcos.com');
+
+
+
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('maria.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('jose.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('carlos.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('ana.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('pedro.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('lucas.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('marcos.com');
+INSERT INTO POSSIVEIS_FRAUDADORES (email) VALUES ('raphaelaraujo.ti@gmail.com');
 
 
 INSERT INTO restaurante (nome) VALUES ('Restaurante A');
