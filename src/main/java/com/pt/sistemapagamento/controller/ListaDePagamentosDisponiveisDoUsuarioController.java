@@ -7,6 +7,8 @@ import com.pt.sistemapagamento.model.UsuarioModel;
 import com.pt.sistemapagamento.repository.PossiveisFraudadoresrepository;
 import com.pt.sistemapagamento.request.ListaDePagamentosDoUsuarioRequest;
 import com.pt.sistemapagamento.response.ListaDePagamentoResponse;
+import com.pt.sistemapagamento.service.AntiFraudeService;
+import com.pt.sistemapagamento.service.FormaDePagamentoService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.validation.Valid;
@@ -26,7 +28,13 @@ public class ListaDePagamentosDisponiveisDoUsuarioController {
     private EntityManager entityManager;
 
     @Autowired
-    private PossiveisFraudadoresrepository possiveisFraudadoresrepository;
+    private PossiveisFraudadoresrepository possiveisFraudadoresrepository; //1
+
+    @Autowired
+    private FormaDePagamentoService formaDePagamentoService; //1
+
+    @Autowired
+    private AntiFraudeService antiFraudeService; //1
 
     /**
      * Criação do ambiente necessário para listar pagamentos de um determinado usuário para um determinado restaurante
@@ -37,23 +45,22 @@ public class ListaDePagamentosDisponiveisDoUsuarioController {
 
 
         // Recupera a lista de possíveis fraudadores
-        List<PossiveisFraudadores> possiveisFraudadores = possiveisFraudadoresrepository.findAll();
+        List<PossiveisFraudadores> possiveisFraudadores = possiveisFraudadoresrepository.findAll(); //1
 
 
         // Recupera o usuário
-        final UsuarioModel usuario = entityManager.find(UsuarioModel.class, usuarioRequest.getId_Usuario());
+        final UsuarioModel usuario = entityManager.find(UsuarioModel.class, usuarioRequest.getId_Usuario()); //1
 
 
         // verifica fraude
-        FormaDePagamentoModel formaDePagamentoModel = new FormaDePagamentoModel();
-        if(formaDePagamentoModel.antiFraude(usuario, possiveisFraudadores)){
-//            final List<FormaDePagamentoModel> listaDePagamentosDisponiveis = formaDePagamentoModel.getListaDePagamentoDisponivel(usuarioRequest.getId_Usuario(), usuarioRequest.getId_Restaurante(), entityManager);
-//            final List<ListaDePagamentoResponse> collect = listaDePagamentosDisponiveis.stream().map(formaDePagamentoModel1 -> new ListaDePagamentoResponse(formaDePagamentoModel1.getDescricao(), formaDePagamentoModel1.getId())).collect(Collectors.toList());
-//            return ResponseEntity.ok(collect);
-        };
-
-        final List<FormaDePagamentoModel> listaDePagamentosDisponiveis = formaDePagamentoModel.getListaDePagamentoDisponivel(usuarioRequest.getId_Usuario(), usuarioRequest.getId_Restaurante(), entityManager);
-        final List<ListaDePagamentoResponse> collect = listaDePagamentosDisponiveis.stream().map(formaDePagamentoModel1 -> new ListaDePagamentoResponse(formaDePagamentoModel1.getDescricao(), formaDePagamentoModel1.getId())).collect(Collectors.toList());
-        return ResponseEntity.ok(collect);
+        if(antiFraudeService.antiFraude(usuario, possiveisFraudadores)){ //1
+            final List<FormaDePagamentoModel> listaDePagamentosDisponiveis = formaDePagamentoService.getListaDePagamentoDisponivelParaFraudadores(usuarioRequest.getId_Usuario(), usuarioRequest.getId_Restaurante(), entityManager);
+            final List<ListaDePagamentoResponse> collect = listaDePagamentosDisponiveis.stream().map(formaDePagamentoModel1 -> new ListaDePagamentoResponse(formaDePagamentoModel1.getDescricao(), formaDePagamentoModel1.getId())).collect(Collectors.toList());
+            return ResponseEntity.ok(collect);
+        } else { //1
+            final List<FormaDePagamentoModel> listaDePagamentosDisponiveis = formaDePagamentoService.getListaDePagamentoDisponivel(usuarioRequest.getId_Usuario(), usuarioRequest.getId_Restaurante(), entityManager);
+            final List<ListaDePagamentoResponse> collect = listaDePagamentosDisponiveis.stream().map(formaDePagamentoModel1 -> new ListaDePagamentoResponse(formaDePagamentoModel1.getDescricao(), formaDePagamentoModel1.getId())).collect(Collectors.toList());
+            return ResponseEntity.ok(collect);
+        }
     }
 }
