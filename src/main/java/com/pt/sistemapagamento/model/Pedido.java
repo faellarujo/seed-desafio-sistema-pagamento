@@ -1,11 +1,15 @@
 package com.pt.sistemapagamento.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 
 public class Pedido {
 
+    @JsonProperty("id")
     private Long id;
 
+    @JsonProperty("valor")
     private BigDecimal valor;
 
     // Getters and Setters
