@@ -27,9 +27,8 @@ public class FormaDePagamentoModel{
     @NotNull
     private TipoDePagamentoModel tipo;
 
-    @Column(name = "pagamentoOnline", nullable = false)
-    private boolean pagamentoOnline;
-
+    @Column(name = "PAGAMENTO_ONLINE", nullable = false)
+    private String pagamentoOnline;
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
@@ -41,7 +40,7 @@ public class FormaDePagamentoModel{
     }
 
 
-    public FormaDePagamentoModel(TipoDePagamentoModel tipo, boolean pagamentoOnline, String descricao) {
+    public FormaDePagamentoModel(TipoDePagamentoModel tipo, String pagamentoOnline, String descricao) {
         this.tipo = tipo;
         this.pagamentoOnline = pagamentoOnline;
         this.descricao = descricao;
@@ -58,11 +57,14 @@ public class FormaDePagamentoModel{
 
     public void setTipo(TipoDePagamentoModel tipo) {
         this.tipo = tipo;
-        this.pagamentoOnline = tipo == TipoDePagamentoModel.CARTAO;
     }
 
-    public boolean isPagamentoOnline() {
+    public String getPagamentoOnline() {
         return pagamentoOnline;
+    }
+
+    public void setPagamentoOnline(String pagamentoOnline) {
+        this.pagamentoOnline = pagamentoOnline;
     }
 
     public String getDescricao() {
@@ -81,6 +83,4 @@ public class FormaDePagamentoModel{
                 ", descricao='" + descricao + '\'' +
                 '}';
     }
-
-
 }
