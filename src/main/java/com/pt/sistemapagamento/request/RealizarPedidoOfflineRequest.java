@@ -29,9 +29,6 @@ public class RealizarPedidoOfflineRequest {
     @JsonProperty("Id_Usuario")
     private Long Id_Usuario;
 
-    @Nullable
-    @JsonProperty("formaDePagamento")
-    private String formaDePagamentoOnline;
 
     // Construtor
 
@@ -41,12 +38,11 @@ public class RealizarPedidoOfflineRequest {
 
     // Construtor com parâmetros e as anotações
 
-    public RealizarPedidoOfflineRequest(@NotNull Long ID_formaDePagamentoOffline, @NotNull Long id_Restaurente, @NotNull Long id_Pedido, @NotNull Long id_Usuario, @Nullable String formaDePagamentoOnline) {
+    public RealizarPedidoOfflineRequest(@NotNull Long ID_formaDePagamentoOffline, @NotNull Long id_Restaurente, @NotNull Long id_Pedido, @NotNull Long id_Usuario) {
         this.ID_formaDePagamentoOffline = ID_formaDePagamentoOffline;
         Id_Restaurente = id_Restaurente;
         Id_Pedido = id_Pedido;
         Id_Usuario = id_Usuario;
-        this.formaDePagamentoOnline = formaDePagamentoOnline;
     }
 
     // Getters e Setters
@@ -83,13 +79,7 @@ public class RealizarPedidoOfflineRequest {
         Id_Usuario = id_Usuario;
     }
 
-    public String getFormaDePagamento() {
-        return formaDePagamentoOnline;
-    }
 
-    public void setFormaDePagamento(String formaDePagamento) {
-        this.formaDePagamentoOnline = formaDePagamento;
-    }
 
     // toString
 
@@ -100,7 +90,6 @@ public class RealizarPedidoOfflineRequest {
                 ", Id_Restaurente=" + Id_Restaurente +
                 ", Id_Pedido=" + Id_Pedido +
                 ", Id_Usuario=" + Id_Usuario +
-                ", formaDePagamento='" + formaDePagamentoOnline + '\'' +
                 '}';
     }
 
@@ -109,10 +98,9 @@ public class RealizarPedidoOfflineRequest {
                 realizarPedidoOfflineRequest.getId_Pedido(),
                 valor,
                 realizarPedidoOfflineRequest.getId_Usuario(),
-                StatusPagamento.AGUARDANDO_PAGAMENTO,
+                StatusPagamento.PENDENTE,
                 LocalDateTime.now(),
-                "Pedido Offline",
-                realizarPedidoOfflineRequest.getFormaDePagamento()
+                "Pedido Offline"
         );
     }
 }

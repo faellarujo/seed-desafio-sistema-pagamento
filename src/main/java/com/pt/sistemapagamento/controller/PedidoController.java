@@ -1,13 +1,10 @@
 package com.pt.sistemapagamento.controller;
 
 
-import com.pt.sistemapagamento.model.Pedido;
-import com.pt.sistemapagamento.service.ConsultaAPIPedido;
 import com.pt.sistemapagamento.util.InfoAPIExterna;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

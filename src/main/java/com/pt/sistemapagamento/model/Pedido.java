@@ -37,11 +37,6 @@ public class Pedido {
     @JsonProperty("informaçõesExtras")
     private String informaçõesExtras;
 
-    @Nullable
-    @JsonProperty("formaDePagamento")
-    private String formaDePagamentoOnline;
-
-
     // Getters and Setters
 
     public Long getId() {
@@ -92,28 +87,19 @@ public class Pedido {
         this.informaçõesExtras = informaçõesExtras;
     }
 
-    public String isFormaDePagamentoOnline() {
-        return formaDePagamentoOnline;
-    }
-
-    public void setFormaDePagamentoOnline(String formaDePagamentoOnline) {
-        this.formaDePagamentoOnline = formaDePagamentoOnline;
-    }
-
     // Constructors
 
     @Deprecated
     public Pedido() {
     }
 
-    public Pedido(Long id, BigDecimal valor, Long ID_Usuario, StatusPagamento statusPagamento, LocalDateTime criaçãodaTransação, String informaçõesExtras, String formaDePagamentoOnline) {
+    public Pedido(Long id, BigDecimal valor, Long ID_Usuario, StatusPagamento statusPagamento, LocalDateTime criaçãodaTransação, String informaçõesExtras) {
         this.id = id;
         this.valor = valor;
         this.ID_Usuario = ID_Usuario;
         this.statusPagamento = statusPagamento;
         this.criaçãodaTransação = criaçãodaTransação;
         this.informaçõesExtras = informaçõesExtras;
-        this.formaDePagamentoOnline = formaDePagamentoOnline;
     }
 
     // toString
@@ -127,7 +113,6 @@ public class Pedido {
                 ", statusPagamento=" + statusPagamento +
                 ", criaçãodaTransação=" + criaçãodaTransação +
                 ", informaçõesExtras='" + informaçõesExtras + '\'' +
-                ", formaDePagamentoOnline='" + formaDePagamentoOnline + '\'' +
                 '}';
     }
 }

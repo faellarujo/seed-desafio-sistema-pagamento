@@ -1,5 +1,8 @@
-package com.pt.sistemapagamento.exception;
+package com.pt.sistemapagamento.exceptionHandler;
 
+import com.pt.sistemapagamento.exception.FormaDePagamentoNaoEncontrada;
+import com.pt.sistemapagamento.exception.FormaDePagamentoNaoOffline;
+import com.pt.sistemapagamento.exception.PedidoNaoEncontradoNaAPIException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -29,20 +32,20 @@ public class CustomValidationExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(senhaVazia.class)
-//    public ResponseEntity<String> senhaVazia(senhaVazia ex) {
-//        return ResponseEntity.status(400).body(ex.getMessage());
-//    }
-//
-//    @ExceptionHandler(EmailExistsException.class)//1
-//    public ResponseEntity<String> emailExistsException(EmailExistsException ex) {
-//        return ResponseEntity.status(400).body(ex.getMessage());
-//    }
-//
-//    @ExceptionHandler(CategoriaExisteException.class)//1
-//    public ResponseEntity<String> categoriaExistsException(CategoriaExisteException ex) {
-//        return ResponseEntity.status(400).body(ex.getMessage());
-//    }
+    @ExceptionHandler(FormaDePagamentoNaoOffline.class)
+    public ResponseEntity<String> pagamentoOffline(FormaDePagamentoNaoOffline ex) {
+        return ResponseEntity.status(400).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(FormaDePagamentoNaoEncontrada.class)//1
+    public ResponseEntity<String> emailExistsException(FormaDePagamentoNaoEncontrada ex) {
+        return ResponseEntity.status(400).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(PedidoNaoEncontradoNaAPIException.class)//1
+    public ResponseEntity<String> categoriaExistsException(PedidoNaoEncontradoNaAPIException ex    ) {
+        return ResponseEntity.status(400).body(ex.getMessage());
+    }
 //
 //    @ExceptionHandler(ProdutoNotExistException.class)//1
 //    public ResponseEntity<String> livroExistsException(ProdutoNotExistException ex) {
