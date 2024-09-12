@@ -38,15 +38,16 @@ public class RealizarPedidoOfflineController {
     private PedidoRepository pedidoRepository;
 
 
-
     @GetMapping("/RealizarPedidoOffline")
     public Pedido realizarPedidoOffline(@RequestBody @Valid RealizarPedidoOfflineRequest realizarPedidoOfflineRequest) {
 
         // verifica existencia de um usuário
+
         final UsuarioModel usuario = usuarioService.verificaExistenciaDoUsuario(realizarPedidoOfflineRequest);
 
 
         // verifica existencia de um restaurante
+
         final RestauranteModel restauranteModel = restauranteService.verificaExistenciaDoRestaurante(realizarPedidoOfflineRequest);
 
 
