@@ -39,7 +39,7 @@ public class RealizarPedidoOfflineController {
 
 
     @GetMapping("/RealizarPedidoOffline")
-    public Pedido realizarPedidoOffline(@RequestBody @Valid RealizarPedidoOfflineRequest realizarPedidoOfflineRequest) {
+    public PedidoModel realizarPedidoOffline(@RequestBody @Valid RealizarPedidoOfflineRequest realizarPedidoOfflineRequest) {
 
         // verifica existencia de um usuário
 
@@ -51,7 +51,7 @@ public class RealizarPedidoOfflineController {
         final RestauranteModel restauranteModel = restauranteService.verificaExistenciaDoRestaurante(realizarPedidoOfflineRequest);
 
 
-        Pedido pedido = consultaAPIPedido.getPedido(realizarPedidoOfflineRequest.getId_Pedido());
+        PedidoModel pedido = consultaAPIPedido.getPedido(realizarPedidoOfflineRequest.getId_Pedido());
         Optional.ofNullable(pedido).orElseThrow(() -> new PedidoNaoEncontradoNaAPIException("Pedido não encontrado"));
 
 
@@ -68,7 +68,7 @@ public class RealizarPedidoOfflineController {
 
         final String pagamentooffiline = repositoryById.get().getPagamentoOnline();
         if (pagamentooffiline.equals("FALSE")) {
-            final Pedido realizarPedidoOfflineRequestModel = realizarPedidoOfflineRequest.toModel(realizarPedidoOfflineRequest, pedido.getValor());
+            final PedidoModel realizarPedidoOfflineRequestModel = realizarPedidoOfflineRequest.toModel(realizarPedidoOfflineRequest, pedido.getValor());
             pedido.setStatusPagamento(StatusPagamento.AGUARDANDO_PAGAMENTO);
             pedidoRepository.save(realizarPedidoOfflineRequestModel);
             return realizarPedidoOfflineRequestModel;

@@ -3,14 +3,13 @@ package com.pt.sistemapagamento.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pt.sistemapagamento.util.StatusPagamento;
 import jakarta.persistence.*;
-import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 
 @Entity
-public class Pedido {
+public class PedidoModel {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -87,10 +86,10 @@ public class Pedido {
     // Constructors
 
     @Deprecated
-    public Pedido() {
+    public PedidoModel() {
     }
 
-    public Pedido(Long id, BigDecimal valor, Long ID_Usuario, StatusPagamento statusPagamento, LocalDateTime criaçãodaTransação, String informaçõesExtras) {
+    public PedidoModel(Long id, BigDecimal valor, Long ID_Usuario, StatusPagamento statusPagamento, LocalDateTime criaçãodaTransação, String informaçõesExtras) {
         this.id = id;
         this.valor = valor;
         this.ID_Usuario = ID_Usuario;

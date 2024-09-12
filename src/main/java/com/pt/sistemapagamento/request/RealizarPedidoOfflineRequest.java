@@ -2,10 +2,9 @@ package com.pt.sistemapagamento.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.pt.sistemapagamento.model.Pedido;
+import com.pt.sistemapagamento.model.PedidoModel;
 import com.pt.sistemapagamento.util.StatusPagamento;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -93,8 +92,8 @@ public class RealizarPedidoOfflineRequest {
                 '}';
     }
 
-    public Pedido toModel(RealizarPedidoOfflineRequest realizarPedidoOfflineRequest, BigDecimal valor) {
-        return new Pedido(
+    public PedidoModel toModel(RealizarPedidoOfflineRequest realizarPedidoOfflineRequest, BigDecimal valor) {
+        return new PedidoModel(
                 realizarPedidoOfflineRequest.getId_Pedido(),
                 valor,
                 realizarPedidoOfflineRequest.getId_Usuario(),
