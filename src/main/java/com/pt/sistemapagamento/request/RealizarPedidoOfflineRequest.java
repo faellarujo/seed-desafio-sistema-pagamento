@@ -98,7 +98,7 @@ public class RealizarPedidoOfflineRequest {
                 realizarPedidoOfflineRequest.getId_Pedido(),
                 valor,
                 realizarPedidoOfflineRequest.getId_Usuario(),
-                StatusPagamento.PENDENTE,
+                StatusPagamento.AGUARDANDO_PAGAMENTO,
                 LocalDateTime.now(),
                 "Pedido Offline"
         );

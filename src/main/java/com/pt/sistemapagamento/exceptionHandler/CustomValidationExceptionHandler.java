@@ -1,8 +1,6 @@
 package com.pt.sistemapagamento.exceptionHandler;
 
-import com.pt.sistemapagamento.exception.FormaDePagamentoNaoEncontrada;
-import com.pt.sistemapagamento.exception.FormaDePagamentoNaoOffline;
-import com.pt.sistemapagamento.exception.PedidoNaoEncontradoNaAPIException;
+import com.pt.sistemapagamento.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -46,17 +44,17 @@ public class CustomValidationExceptionHandler {
     public ResponseEntity<String> categoriaExistsException(PedidoNaoEncontradoNaAPIException ex    ) {
         return ResponseEntity.status(400).body(ex.getMessage());
     }
-//
-//    @ExceptionHandler(ProdutoNotExistException.class)//1
-//    public ResponseEntity<String> livroExistsException(ProdutoNotExistException ex) {
-//        return ResponseEntity.status(400).body(ex.getMessage());
-//    }
-//
-//    @ExceptionHandler(UserNotPermission.class)//1
-//    public ResponseEntity<String> UsuarioSemPermissaoParaInserirIMG(UserNotPermission ex) {
-//        return ResponseEntity.status(403).body(ex.getMessage());
-//    }
-//
+
+    @ExceptionHandler(RestauranteNaoEncontrado.class)//1
+    public ResponseEntity<String> livroExistsException(RestauranteNaoEncontrado ex) {
+        return ResponseEntity.status(400).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UsuarioNaoEncontrado.class)//1
+    public ResponseEntity<String> UsuarioSemPermissaoParaInserirIMG(UsuarioNaoEncontrado ex) {
+        return ResponseEntity.status(403).body(ex.getMessage());
+    }
+
 //
 //    @ExceptionHandler(Notavaluemustbebetween1and5.class)//1
 //    public ResponseEntity<String> Notavaluemustbebetween1and5(Notavaluemustbebetween1and5 ex) {

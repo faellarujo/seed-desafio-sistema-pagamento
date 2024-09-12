@@ -2,10 +2,7 @@ package com.pt.sistemapagamento.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pt.sistemapagamento.util.StatusPagamento;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.Nullable;
 
 import java.math.BigDecimal;
@@ -26,7 +23,7 @@ public class Pedido {
     @JsonProperty("ID_Restaurante")
     private Long ID_Usuario;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @JsonProperty("statusPagamento")
     private StatusPagamento statusPagamento;
 
