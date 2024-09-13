@@ -64,8 +64,12 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.deveficiente</groupId> <!-- Projeto de suporte -->
+            <artifactId>sistemas-externos-desafio-pagamento</artifactId> <!-- projeto de suporte -->
+            <version>0.0.1-SNAPSHOT</version> <!-- Substitua pela versão correta do Projeto de Suporte-->
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
